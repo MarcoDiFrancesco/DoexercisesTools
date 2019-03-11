@@ -34,15 +34,17 @@ driver.find_element_by_id('signin').click()
 wait.until(EC.visibility_of_element_located((By.ID, "link_res")))
 driver.find_element_by_id('link_res').click()
 
-# get table marks
-wait.until(EC.visibility_of_element_located((By.ID, "results_table")))
-testDate = driver.find_element_by_xpath('//*[@id="results_table"]/tbody/tr[1]/td[2]').text
-selectedMark = driver.find_element_by_xpath('//*[@id="results_table"]/tbody/tr[1]/td[3]').text
-print(testDate + ' - ' + selectedMark)
-
 # count rows and cols
-rowCount = re.findall("<tr>",driver.page_source)
-print(rowCount)
+wait.until(EC.visibility_of_element_located((By.ID, "results_table")))
+rowCount = len(re.findall("<tr>",driver.page_source))-1 # -1 to remove thead
+
+for x in range(rowCount):
+  print(x+1)
+  datePath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[2]'
+  markPath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[3]'
+  selectedDate = driver.find_element_by_xpath(datePath).text
+  selectedMark = driver.find_element_by_xpath(markPath).text
+  print(selectedDate + ' - ' + selectedMark)
 # for size table, get date and mark (this page)
 # insert them into spreadsheet (sheets.py)
 
