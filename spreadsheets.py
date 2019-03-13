@@ -16,7 +16,7 @@ url = 'http://datascience.maths.unitn.it/ocpu/library/doexercises/www/'
 driver = webdriver.Chrome(r"D:\Users\Marco\Downloads\chromedriver.exe")
 driver.get(url)
 
-for student in range(2,8):
+for student in range(2,9):
   # wait for the page to be loaded
   wait = WebDriverWait(driver, 20)
   wait.until(EC.visibility_of_element_located((By.ID, "email_address")))
