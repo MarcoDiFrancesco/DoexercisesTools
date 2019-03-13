@@ -18,7 +18,7 @@ driver.get(url)
 
 for student in range(2,8):
   # wait for the page to be loaded
-  wait = WebDriverWait(driver, 15)
+  wait = WebDriverWait(driver, 20)
   wait.until(EC.visibility_of_element_located((By.ID, "email_address")))
 
   # get email and matricola values from the page
