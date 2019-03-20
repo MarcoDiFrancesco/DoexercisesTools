@@ -9,7 +9,7 @@ import re
 # login to spreadsheet
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 gc = gspread.authorize(ServiceAccountCredentials.from_json_keyfile_name('credentials.json',scope))
-sheet = gc.open("Voti statistica").get_worksheet(1)
+sheet = gc.open("Voti statistica").get_worksheet(0)
 
 # access statistica page
 url = 'http://datascience.maths.unitn.it/ocpu/library/doexercises/www/'
