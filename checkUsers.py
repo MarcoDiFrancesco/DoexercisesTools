@@ -13,7 +13,7 @@ sheet = gc.open("Voti statistica").get_worksheet(2)
 
 # access statistica page
 url = 'http://datascience.maths.unitn.it/ocpu/library/doexercises/www/'
-driver = webdriver.Chrome(r"D:\Users\Marco\Downloads\chromedriver.exe")
+driver = webdriver.Chrome("chromedriver.exe")
 driver.get(url)
 
 wait = WebDriverWait(driver, 20)
