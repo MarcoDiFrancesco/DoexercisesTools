@@ -17,6 +17,7 @@ driver = webdriver.Chrome("chromedriver.exe")
 driver.set_window_size(800,600)
 driver.get(url)
 
+# load webdriver
 wait = WebDriverWait(driver, 20)
 
 # check column number for Matricola, Nome, Cognome, Stato
@@ -56,7 +57,7 @@ for student in range(2,len(arraySurname)):
 
   # create email from name and surname
   email = name.lower()+'.'+surname.lower()
-  email = email.replace(" ","")
+  email = email.replace(" ", "")
 
   print(
     'Login: ' + id + ' - '
