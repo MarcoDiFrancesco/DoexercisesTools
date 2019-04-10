@@ -90,25 +90,19 @@ for student in range(2, len(arraySurname)):
 			selectedMark = driver.find_element_by_xpath(markPath).text
 			date[x] = selectedDate
 			mark[x] = selectedMark
-			print(str(selectedMark)+'-'+str(selectedDate))
+			print(str(selectedMark)+' - '+str(selectedDate))
 
 		# update mark from selected data
 		arrayStudent = sheet.range('E'+str(student)+':CA'+str(student))
-		print(date)
-		print(arrayDate)
 
 		for x in range(0, rowCount+1):
 			selectedDate = date[x]
 			selectedMark = mark[x]
 			# check if the date was used in the page
 			if selectedDate != 0:
-				print(str(arrayDate[3])+'---')
 				positionDate = arrayDate.index(selectedDate)
 				arrayStudent[positionDate].value = float(selectedMark)
-				print((str(positionDate))+'-'+str(selectedMark))
-		print(arrayStudent)
 
 		sheet.update_cells(arrayStudent)
 		driver.refresh()
-
 driver.close()
