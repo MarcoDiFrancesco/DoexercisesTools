@@ -79,30 +79,34 @@ for student in range(2, len(arraySurname)):
 		wait.until(EC.visibility_of_element_located((By.ID, "results_table")))
 		rowCount = len(re.findall("<tr>", driver.page_source)) - 1  # -1 to remove thead
 
-		# there will be more or less 60 marks
-		date = [0] * 100
-		mark = [0] * 100
+		# if user has no marks
+		if rowCount == 0 or rowCount == 1:
+			print('no marks found')
+		else:
+			# there will be more or less 60 marks
+			date = [0] * 100
+			mark = [0] * 100
 
-		for x in range(1, rowCount+1):
-			datePath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[2]'
-			markPath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[3]'
-			selectedDate = driver.find_element_by_xpath(datePath).text
-			selectedMark = driver.find_element_by_xpath(markPath).text
-			date[x] = selectedDate
-			mark[x] = selectedMark
-			print(str(selectedMark)+' - '+str(selectedDate))
+			for x in range(1, rowCount+1):
+				datePath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[2]'
+				markPath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[3]'
+				selectedDate = driver.find_element_by_xpath(datePath).text
+				selectedMark = driver.find_element_by_xpath(markPath).text
+				date[x] = selectedDate
+				mark[x] = selectedMark
+				print(str(selectedMark)+' - '+str(selectedDate))
 
-		# update mark from selected data
-		arrayStudent = sheet.range('E'+str(student)+':CA'+str(student))
+			# update mark from selected data
+			arrayStudent = sheet.range('E'+str(student)+':CA'+str(student))
 
-		for x in range(0, rowCount+1):
-			selectedDate = date[x]
-			selectedMark = mark[x]
-			# check if the date was used in the page
-			if selectedDate != 0:
-				positionDate = arrayDate.index(selectedDate)
-				arrayStudent[positionDate].value = float(selectedMark)
+			for x in range(0, rowCount+1):
+				selectedDate = date[x]
+				selectedMark = mark[x]
+				# check if the date was used in the page
+				if selectedDate != 0:
+					positionDate = arrayDate.index(selectedDate)
+					arrayStudent[positionDate].value = float(selectedMark)
 
-		sheet.update_cells(arrayStudent)
+			sheet.update_cells(arrayStudent)
 		driver.refresh()
 driver.close()
