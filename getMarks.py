@@ -12,9 +12,14 @@ gc = gspread.authorize(ServiceAccountCredentials.from_json_keyfile_name('credent
 sheet = gc.open("Voti statistica").get_worksheet(2)
 
 # access statistica page
+
+options = webdriver.ChromeOptions()
+options.binary_location = r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+options.add_argument("--headless")
+options.add_argument('window-size=1200x600')
+driver = webdriver.Chrome("chromedriver.exe", chrome_options = options)
+
 url = 'http://datascience.maths.unitn.it/ocpu/library/doexercises/www/'
-driver = webdriver.Chrome("chromedriver.exe")
-driver.set_window_size(800, 600)
 driver.get(url)
 
 # load webdriver
@@ -50,7 +55,7 @@ for student in range(2, len(arraySurname)):
 	wait = WebDriverWait(driver, 20)
 	wait.until(EC.visibility_of_element_located((By.ID, "email_address")))
 
-  # get email and matricola values from the page
+	# get email and matricola values from the page
 	id = arrayId[student]
 	surname = arraySurname[student]
 	name = arrayName[student]
@@ -59,54 +64,56 @@ for student in range(2, len(arraySurname)):
 	email = email.replace(" ", "")
 
 	print('Login: ' + email + ' ' + id)
-
 	if id == ' ' or surname == ' ' or name == ' ':
 		print('skip')
 	else:
-		# write values in the page
-		driver.find_element_by_id('email_address').clear()
-		driver.find_element_by_id('matricola').clear()
+		try:
+			# write values in the page
+			driver.find_element_by_id('email_address').clear()
+			driver.find_element_by_id('matricola').clear()
 
-		driver.find_element_by_id('email_address').send_keys(email)
-		driver.find_element_by_id('matricola').send_keys(id)
-		driver.find_element_by_id('signin').click()
+			driver.find_element_by_id('email_address').send_keys(email)
+			driver.find_element_by_id('matricola').send_keys(id)
+			driver.find_element_by_id('signin').click()
 
-		# click for table with marks
-		wait.until(EC.visibility_of_element_located((By.ID, "link_res")))
-		driver.find_element_by_id('link_res').click()
+			# click for table with marks
+			wait.until(EC.visibility_of_element_located((By.ID, "link_res")))
+			driver.find_element_by_id('link_res').click()
 
-		# count rows and cols
-		wait.until(EC.visibility_of_element_located((By.ID, "results_table")))
-		rowCount = len(re.findall("<tr>", driver.page_source)) - 1  # -1 to remove thead
+			# count rows and cols
+			wait.until(EC.visibility_of_element_located((By.ID, "results_table")))
+			rowCount = len(re.findall("<tr>", driver.page_source)) - 1  # -1 to remove thead
 
-		# if user has no marks
-		if rowCount == 0 or rowCount == 1:
-			print('no marks found')
-		else:
-			# there will be more or less 60 marks
-			date = [0] * 100
-			mark = [0] * 100
+			# if user has no marks
+			if rowCount == 0 or rowCount == 1:
+				print('no marks found')
+			else:
+				# there will be more or less 60 marks
+				date = [0] * 100
+				mark = [0] * 100
 
-			for x in range(1, rowCount+1):
-				datePath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[2]'
-				markPath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[3]'
-				selectedDate = driver.find_element_by_xpath(datePath).text
-				selectedMark = driver.find_element_by_xpath(markPath).text
-				date[x] = selectedDate
-				mark[x] = selectedMark
-				print(str(selectedMark)+' - '+str(selectedDate))
+				for x in range(1, rowCount+1):
+					datePath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[2]'
+					markPath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[3]'
+					selectedDate = driver.find_element_by_xpath(datePath).text
+					selectedMark = driver.find_element_by_xpath(markPath).text
+					date[x] = selectedDate
+					mark[x] = selectedMark
+					print(str(selectedMark)+' - '+str(selectedDate))
 
-			# update mark from selected data
-			arrayStudent = sheet.range('E'+str(student)+':CA'+str(student))
+				# update mark from selected data
+				arrayStudent = sheet.range('E'+str(student)+':CA'+str(student))
 
-			for x in range(0, rowCount+1):
-				selectedDate = date[x]
-				selectedMark = mark[x]
-				# check if the date was used in the page
-				if selectedDate != 0:
-					positionDate = arrayDate.index(selectedDate)
-					arrayStudent[positionDate].value = float(selectedMark)
+				for x in range(0, rowCount+1):
+					selectedDate = date[x]
+					selectedMark = mark[x]
+					# check if the date was used in the page
+					if selectedDate != 0:
+						positionDate = arrayDate.index(selectedDate)
+						arrayStudent[positionDate].value = float(selectedMark)
 
-			sheet.update_cells(arrayStudent)
+				sheet.update_cells(arrayStudent)
+		except:
+			print("user not working")
 		driver.refresh()
 driver.close()
