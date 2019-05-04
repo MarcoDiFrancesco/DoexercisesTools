@@ -9,16 +9,15 @@ import re
 # login to spreadsheet
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 gc = gspread.authorize(ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope))
-sheet = gc.open("Voti statistica").get_worksheet(2)
+# select number of sheet you want to use, 0 for 1, 1 for 2 and so on
+sheet = gc.open_by_key('1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ').get_worksheet(2) 
 
 # access statistica page
-
 options = webdriver.ChromeOptions()
 options.binary_location = r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
 options.add_argument("--headless")
 options.add_argument('window-size=1200x600')
-driver = webdriver.Chrome("chromedriver.exe", chrome_options = options)
-
+driver = webdriver.Chrome("chromedriver.exe", options = options)
 url = 'http://datascience.maths.unitn.it/ocpu/library/doexercises/www/'
 driver.get(url)
 

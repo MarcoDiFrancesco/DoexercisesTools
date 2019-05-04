@@ -5,11 +5,9 @@ from selenium.webdriver.support import expected_conditions as EC
 import re
 
 print('Email: ')
-# email = input()
-email = 'marco.difrancesco'
+email = input()
 print('Matricola: ')
-# id = input()
-id = '202351'
+id = input()
 
 # access statistica page
 url = 'http://datascience.maths.unitn.it/ocpu/library/doexercises/www/'
