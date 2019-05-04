@@ -1,5 +1,6 @@
 # Statistica-UNITN
-Page of 2019 marks: https://docs.google.com/spreadsheets/d/1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ/pubhtml
+Page of 2019 marks: https://docs.google.com/spreadsheets/d/1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ/pubhtml  
+The students ID are not publicly available.
 
 Programs made in Python to manage the [exercise website](http://datascience.maths.unitn.it/ocpu/library/doexercises/www/) of the professor Agostinelli.  
 With this programs you are able to:
