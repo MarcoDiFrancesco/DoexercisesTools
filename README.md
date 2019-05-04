@@ -1,4 +1,6 @@
 # Statistica-UNITN
+Page of 2019 marks: https://docs.google.com/spreadsheets/d/1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ/pubhtml
+
 Programs made in Python to manage the [exercise website](http://datascience.maths.unitn.it/ocpu/library/doexercises/www/) of the professor Agostinelli.  
 With this programs you are able to:
 * [Brute force ID numbers](https://github.com/MarcoDiFrancesco/statistica-unitn/blob/master/bruteForceMatricola.py) (Matricole) of students
