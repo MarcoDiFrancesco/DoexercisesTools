@@ -91,6 +91,7 @@ for student in range(2, len(arraySurname)):
 				date = [0] * 100
 				mark = [0] * 100
 
+				print('getting ' + str(rowCount) + ' marks...')
 				for x in range(1, rowCount+1):
 					datePath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[2]'
 					markPath = '//*[@id="results_table"]/tbody/tr['+str(x)+']/td[3]'
@@ -98,7 +99,6 @@ for student in range(2, len(arraySurname)):
 					selectedMark = driver.find_element_by_xpath(markPath).text
 					date[x] = selectedDate
 					mark[x] = selectedMark
-					print(str(selectedMark)+' - '+str(selectedDate))
 
 				# update mark from selected data
 				arrayStudent = sheet.range('E'+str(student)+':CA'+str(student))
