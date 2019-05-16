@@ -27,6 +27,7 @@ write `sheet = gc.open_by_key('1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ')`
 
 The output should look like:
 
-![cmd output downlaod marks](https://i.imgur.com/xi8IV3I.png)
+<!-- cmd output downlaod marks -->
+<img src="https://i.imgur.com/xi8IV3I.png" width="500">
 
 Done 😊
