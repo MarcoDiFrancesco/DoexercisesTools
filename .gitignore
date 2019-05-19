@@ -1,4 +1,2 @@
 credentials.json
-*.log
-token.py
 __pycache__/
