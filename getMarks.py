@@ -10,7 +10,7 @@ import re
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 gc = gspread.authorize(ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope))
 # select number of sheet you want to use, 0 for 1, 1 for 2 and so on
-sheet = gc.open_by_key('1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ').get_worksheet(2) 
+sheet = gc.open_by_key('1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ').get_worksheet(2)
 
 # access statistica page
 options = webdriver.ChromeOptions()

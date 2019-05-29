@@ -16,9 +16,11 @@ All of these programs need:
 `pip install gspread`
 * Selenium libraries installed  
 `pip install -U selenium`
+* Oauth2client  
+`pip install oauth2client`
 * [Download](https://sites.google.com/a/chromium.org/chromedriver/downloads) selenium driver to make it working with Chrome, old version of the drivers is already present in the repository
 
-[Download marks](https://github.com/MarcoDiFrancesco/statistica-unitn/blob/master/getMarks.py) needs:
+The script [Download marks](https://github.com/MarcoDiFrancesco/statistica-unitn/blob/master/getMarks.py) needs:
 * A [Google Spreadsheet](https://docs.google.com/spreadsheets), once done copy the link key into the programs you want to use in the section  
 `sheet = gc.open_by_key()`  
 e.g. with the link `https://docs.google.com/spreadsheets/d/1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ`  
