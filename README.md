@@ -23,8 +23,10 @@ All of these programs need:
 The script [Download marks](https://github.com/MarcoDiFrancesco/statistica-unitn/blob/master/getMarks.py) needs:
 * A [Google Spreadsheet](https://docs.google.com/spreadsheets), once done copy the link key into the programs you want to use in the section  
 `sheet = gc.open_by_key()`  
-e.g. with the link `https://docs.google.com/spreadsheets/d/1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ`  
-write `sheet = gc.open_by_key('1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ')`
+e.g. with the link  
+`https://docs.google.com/spreadsheets/d/1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ`  
+write the last part of the link  
+`sheet = gc.open_by_key('1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ')`
 * Drive API on [Cloud console](https://console.developers.google.com/apis) to connect it with Spreadsheet, ([tutorial](https://developers.google.com/sheets/api/quickstart/python)), once downloaded the Spreadsheets API in JSON format, rename the file to `credentials.json` and put it the the project folder
 
 The output should look like:
