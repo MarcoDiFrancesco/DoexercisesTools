@@ -1,16 +1,20 @@
 # Statistica-UNITN
-![Spreadsheet screenshot](https://i.imgur.com/15HZLfp.png)
+## What's this?
+This program is made to plot data of all the students that are attending Probability and Statistics class using [doexercises platform](http://datascience.maths.unitn.it/doexercises/).
 
-Spreadsheet of 2019 marks: https://docs.google.com/spreadsheets/d/1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ/pubhtml  
-The students ID are not publicly available in the spreadsheet.
-
-Programs made in Python to manage the [exercise website](http://datascience.maths.unitn.it/ocpu/library/doexercises/www/) of the professor Agostinelli.  
 With this programs you are able to:
-* [Brute force ID numbers](https://github.com/MarcoDiFrancesco/statistica-unitn/blob/master/bruteForceMatricola.py) (matricole) of students
-* [Download marks](https://github.com/MarcoDiFrancesco/statistica-unitn/blob/master/getMarks.py) of the students you have the ID number, and put them in a [Google Spreadsheet](https://docs.google.com/spreadsheets/)
-* [Request token](https://github.com/MarcoDiFrancesco/statistica-unitn/blob/master/requestToken.py) continuously (usefull for the 1st May exercise)
+* [Brute force ID numbers](/bruteForceMatricola.py) (matricole) of students
+* [Download marks](/getMarks.py) of the students you have the ID number, and put them in a [Google Spreadsheet](https://docs.google.com/spreadsheets/)
+* [Request token](/requestToken.py) continuously (useful for the 1st May exercise)
 
-All of these programs need:
+
+## Plot example
+Spreadsheet of 2019 marks: https://docs.google.com/spreadsheets/d/1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ/pubhtml  
+*The students ID are not publicly available in the spreadsheet*
+
+![Spreadsheet screenshot](https://i.imgur.com/15HZLfp.png)
+## How to use it
+Requirements:
 * Python installed
 * The gspread (Google Spreadsheets) libraries installed:  
 `pip install gspread`
@@ -27,7 +31,7 @@ e.g. with the link
 `https://docs.google.com/spreadsheets/d/1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ`  
 write the last part of the link  
 `sheet = gc.open_by_key('1xDTFy_oSF6smH6gWwwt4T3QZtLoTRGazkQRKLxoxvhQ')`
-* Drive API on [Cloud console](https://console.developers.google.com/apis) to connect it with Spreadsheet, ([tutorial](https://developers.google.com/sheets/api/quickstart/python)), once downloaded the Spreadsheets API in JSON format, rename the file to `credentials.json` and put it the the project folder
+* Drive API on [Cloud console](https://console.developers.google.com/apis) to connect it with Spreadsheet, ([tutorial](https://developers.google.com/sheets/api/quickstart/python)), once downloaded the Spreadsheets API in JSON format, rename the file to `credentials.json` and put it the project folder
 
 The output should look like:
 
